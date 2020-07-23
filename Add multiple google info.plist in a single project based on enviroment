@@ -1,0 +1,22 @@
+Add new folder in your project directory (e.x. project-ios/PROJECT/PROJECT/GooglePlist)
+
+1. GooglePlist/ your plists of google or firebase or crashlytics fcm
+2. Go to project settings
+3. Under build phases > add new run script phase > name it Google plist
+4.  add below script into that
+
+PATH_TO_GOOGLE_PLISTS="${PROJECT_DIR}/Project name/GooglePlist" 
+
+case "${CONFIGURATION}" in
+
+   "Debug" | "Release" ) //config name as same as in project setting>info>Configurations
+        cp -r "$PATH_TO_GOOGLE_PLISTS/GoogleService-Info.plist" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist" ;;
+
+   "Stage Release" | "Stage" ) //config name as same as in project setting>info>Configurations
+        cp -r "$PATH_TO_GOOGLE_PLISTS/GoogleServiceStag-Info.plist" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist" ;;
+
+    *)
+        ;;
+esac
+
+https://stackoverflow.com/questions/37615405/use-different-googleservice-info-plist-for-different-build-schemes

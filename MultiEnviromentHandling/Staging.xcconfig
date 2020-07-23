@@ -1,0 +1,14 @@
+//
+//  Staging.xcconfig
+//  MultiEnviromentHandling
+//
+//  Created by Nitin Bhatia on 07/09/19.
+//  Copyright © 2019 Nitin Bhatia. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+Base_Url = https://
+Server_Url = jsonplaceholder.typicode.com
+

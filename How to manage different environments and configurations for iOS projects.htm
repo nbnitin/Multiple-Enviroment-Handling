@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<!-- saved from url=(0115)https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>How to manage different environments and configurations for iOS projects</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./How to manage different environments and configurations for iOS projects_files/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="./How to manage different environments and configurations for iOS projects_files/prism-unescaped-markup.css">
+
+    <link href="./How to manage different environments and configurations for iOS projects_files/css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="./How to manage different environments and configurations for iOS projects_files/screen.css">
+    <link rel="stylesheet" type="text/css" href="./How to manage different environments and configurations for iOS projects_files/algolia-search.css">
+    
+    <script type="text/javascript" async="" src="./How to manage different environments and configurations for iOS projects_files/analytics.js"></script><script async="" src="./How to manage different environments and configurations for iOS projects_files/gtm.js"></script><script src="./How to manage different environments and configurations for iOS projects_files/algoliasearch.min.js"></script>
+    <script src="./How to manage different environments and configurations for iOS projects_files/autocomplete.min.js"></script>
+
+    <link rel="shortcut icon" href="https://www.freecodecamp.org/news/favicon.png" type="image/png">
+    <link rel="canonical" href="https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/amp/">
+    
+    <meta property="og:site_name" content="Developer News">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to manage different environments and configurations for iOS projects">
+    <meta property="og:description" content="As iOS developers, we are already aware of managing different environments like
+Development, QA, Beta, and Production. For these different environments, there
+are different server URLs, app icons, and configurations.
+
+So before creating a new build pointing to an environment, we need to keep in
+mind that we also have to change the server URL. We could do this by changing
+some hardcoded flag value in the constant file or using macros, but it makes
+everything more complicated.
+
+But if we think for">
+    <meta property="og:url" content="https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/">
+    <meta property="og:image" content="https://cdn-media-1.freecodecamp.org/images/1*qZuI2QUxoEvSlLqrqO7UPA.png">
+    <meta property="article:published_time" content="2017-11-18T10:51:44.000Z">
+    <meta property="article:modified_time" content="2019-06-10T19:11:51.000Z">
+    <meta property="article:tag" content="iOS">
+    <meta property="article:tag" content="Apple">
+    <meta property="article:tag" content="Tech">
+    <meta property="article:tag" content="Web Development">
+    <meta property="article:tag" content="Programming">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/freecodecamp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to manage different environments and configurations for iOS projects">
+    <meta name="twitter:description" content="As iOS developers, we are already aware of managing different environments like
+Development, QA, Beta, and Production. For these different environments, there
+are different server URLs, app icons, and configurations.
+
+So before creating a new build pointing to an environment, we need to keep in
+mind that we also have to change the server URL. We could do this by changing
+some hardcoded flag value in the constant file or using macros, but it makes
+everything more complicated.
+
+But if we think for">
+    <meta name="twitter:url" content="https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/">
+    <meta name="twitter:image" content="https://cdn-media-1.freecodecamp.org/images/1*qZuI2QUxoEvSlLqrqO7UPA.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Boudhayan Biswas">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="iOS, Apple, Tech, Web Development, Programming">
+    <meta name="twitter:site" content="@freecodecamp">
+    <meta name="twitter:creator" content="@_boudhayan_">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="288">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Developer News",
+        "logo": "https://cdn-media-1.freecodecamp.org/ghost/2018/12/FCC-logo-white.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Boudhayan Biswas",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://www.freecodecamp.org/news/content/images/2019/06/46508828_2063359100369860_782182397222322176_o.jpg",
+            "width": 1365,
+            "height": 2048
+        },
+        "url": "https://www.freecodecamp.org/news/author/boudhayan/",
+        "sameAs": [
+            "https://medium.com/@iboudhayan",
+            "https://twitter.com/_boudhayan_"
+        ]
+    },
+    "headline": "How to manage different environments and configurations for iOS projects",
+    "url": "https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/",
+    "datePublished": "2017-11-18T10:51:44.000Z",
+    "dateModified": "2019-06-10T19:11:51.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://cdn-media-1.freecodecamp.org/images/1*qZuI2QUxoEvSlLqrqO7UPA.png",
+        "width": 800,
+        "height": 288
+    },
+    "keywords": "iOS, Apple, Tech, Web Development, Programming",
+    "description": "As iOS developers, we are already aware of managing different environments like\nDevelopment, QA, Beta, and Production. For these different environments, there\nare different server URLs, app icons, and configurations.\n\nSo before creating a new build pointing to an environment, we need to keep in\nmind that we also have to change the server URL. We could do this by changing\nsome hardcoded flag value in the constant file or using macros, but it makes\neverything more complicated.\n\nBut if we think for",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.freecodecamp.org/news/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 2.25">
+    <link rel="alternate" type="application/rss+xml" title="Developer News" href="https://www.freecodecamp.org/news/rss/">
+    <script>
+  // Set up dataLayer with data if provided
+  window.dataLayer = window.dataLayer || [{ gaPropertyId: 'UA-55446531-20' }];
+
+  // Initialized GTM via gtag
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-55446531-20');
+
+  // Configure and initialize GTM
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl+'&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer', 'GTM-5D6RKKP');
+</script>
+
+<style id="fit-vids-style">.fluid-width-video-container{flex-grow: 1;width:100%;}.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+
+<body class="post-template tag-ios tag-apple tag-tech tag-web-development tag-programming" cz-shortcut-listen="true">
+
+    <div class="site-wrapper">
+        <nav class="site-nav nav-padding">
+    <div class="site-nav-left">
+        <form onsubmit="event.preventDefault();">
+  <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input type="search" placeholder="Search 5,000+ tutorials" id="search-input" class="aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Lato, sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="aa-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div class="aa-dataset-1"></div></span></span>
+</form>
+
+<script>
+  const client = algoliasearch('QMJYL5WYTI', '4318af87aa3ce128708f1153556c6108');
+  const index = client.initIndex('news');
+  autocomplete('#search-input', { hint: false }, [
+    {
+      source: autocomplete.sources.hits(index, { hitsPerPage: 8 }),
+      debounce: 250,
+      templates: {
+        suggestion: (suggestion, result) => {
+          return `
+            <a href="${suggestion.url}">
+              <div class="algolia-result">
+                <span>${suggestion._highlightResult.title.value}</span>
+              </div>
+            </a>
+          `;
+        },
+        empty: (options) => {
+          return `
+            <div class="algolia-result">
+              No tutorials found
+            </div>
+          `;
+        },
+        footer: (query, result) => {
+          if (!query.isEmpty) {
+            return `
+              <hr/>
+              <a href="https://freecodecamp.org/news/search?query=${result.query}">
+                <div class="algolia-result algolia-footer">
+                  <span>See all results for ${result.query}</span>
+                </div>
+              </a>
+            `;
+          }
+        }
+      }
+    }
+  ]).on('autocomplete:selected', (event, suggestion, dataset, context) => {
+    // Set to true if hit is selected by mouse or enter key
+    hitSelected = true;
+    // Do nothing on click, as the browser will already do it
+    if (context.selectionMethod === 'click') {
+      return;
+    }
+    // Change the page, for example, on other events
+    window.location.assign(suggestion.url);
+  });
+
+  // If no hits in the Autocomplete dropdown are highlighted,
+  // treat input like normal search bar
+  const input = document.getElementById("search-input");
+  let searchQuery;
+  let hitSelected;
+
+  // Get the value of the search bar after each key event
+  input.addEventListener('input', e => {
+    searchQuery = input.value;
+  });
+
+  input.addEventListener('keydown', e => {
+    if (event.key === "Enter" && !hitSelected && searchQuery) {
+      window.location.assign(`https://freecodecamp.org/news/search?query=${searchQuery}`);
+    }
+  });
+</script>    </div>
+    <div class="site-nav-middle">
+        <a class="site-nav-logo" href="https://www.freecodecamp.org/news"><img src="./How to manage different environments and configurations for iOS projects_files/FCC-logo-white.png" alt="Developer News"></a>
+    </div>
+    <div class="site-nav-right main-nav">
+        <div class="main-nav-group">
+            <ul class="nav" role="menu">
+    <li class="nav-learn" role="menuitem"><a href="https://learn.freecodecamp.org/">Learn</a></li>
+    <li class="nav-forum" role="menuitem"><a href="https://www.freecodecamp.org/forum/">Forum</a></li>
+    <li class="nav-news" role="menuitem"><a href="https://www.freecodecamp.org/news/">News</a></li>
+</ul>
+
+        </div>
+    </div>
+    <button class="site-nav-right toggle-button-nav">
+        Menu
+    </button>
+</nav>
+
+
+        
+
+
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-ios tag-apple tag-tech tag-web-development tag-programming ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-11-18">18 November 2017</time>
+                    <span class="date-divider">/</span>
+                    <a href="https://www.freecodecamp.org/news/tag/ios/">
+                        #iOS
+                    </a>
+                </section>
+                <h1 class="post-full-title">How to manage different environments and configurations for iOS projects</h1>
+            </header>
+
+            <div class="post-full-author-header">
+
+
+                
+<section class="author-card">
+    <img class="author-profile-image" src="./How to manage different environments and configurations for iOS projects_files/46508828_2063359100369860_782182397222322176_o.jpg" alt="Boudhayan Biswas">
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="https://www.freecodecamp.org/news/author/boudhayan/">Boudhayan Biswas</a></h4>
+        <p>Swift Developer. In love with Python &amp; Machine Learning.</p>
+    </section>
+</section>
+
+
+            </div>
+
+            
+<div class="social-row">
+    <button class="twitter" onclick="window.open(&#39;https://twitter.com/share?text=How%20to%20manage%20different%20environments%20and%20configurations%20for%20iOS%20projects%20by%20@_boudhayan_&amp;url=https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/&#39;, &#39;share-twitter&#39;, &#39;width=550,height=235&#39;);return false;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path>
+    </svg> <span>&nbsp;Tweet this to your followers</span></button>
+    <div></div>
+    <button class="email" onclick="window.location.href = &#39;mailto:?subject=helpful freeCodeCamp article: How to manage different environments and configurations for iOS projects  &amp;body=How to manage different environments and configurations for iOS projects https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/&#39;;">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="32" height="32">
+    <defs>
+        <path d="M0 100L640 100L320 360L0 100Z" id="b1cw6CIsqS"></path>
+        <path d="M0 537.18L0 160L320 420L640 160L640 541.1L0 537.18Z" id="aAHuzNbff"></path>
+    </defs>
+    <g>
+
+        <use xlink:href="#b1cw6CIsqS" opacity="1" fill-opacity="1"></use>
+        <path d="M0 100L640 100L320 360L0 100Z" id="c2GF8nL4hl" fill="white" fill-opacity="1" filter="url(#shadow605849)"></path>
+        <use xlink:href="#aAHuzNbff" opacity="1" fill-opacity="1"></use>
+        <path d="M0 537.18L0 160L320 420L640 160L640 541.1L0 537.18Z" id="a5mitN1KH" fill="white" fill-opacity="1" filter="url(#shadow15043397)"></path>
+
+    </g>
+</svg> <span>Email this to a friend</span></button>
+
+    <div></div>
+    <button class="facebook" onclick="window.open(&#39;https://www.facebook.com/sharer/sharer.php?u=https://www.freecodecamp.org/news/author/boudhayan/&#39;, &#39;share-facebook&#39;,&#39;width=580,height=296&#39;);return false;">
+        <!-- Facebook Filled icon by Icons8 -->
+
+
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="32" height="32">
+    <defs>
+        <path d="M640 321.89C640 482.61 523.62 615.43 369.16 638.11C368.42 630.47 367.98 556.08 367.83 414.93C395.49 414.61 420.42 414.27 442.61 413.9C446.4 380.3 452.55 347.37 456.62 323.22C425.51 322.93 388.88 323.31 367.83 323.22C368.37 281.18 368.35 303.77 367.83 262.54C372.62 222.64 384.99 209.96 459.86 213.65C459.57 203.36 460.61 151.4 459.86 133.3C460.87 134.09 279.13 86.74 269.33 241.43C268.52 265.86 268.65 290.49 269.33 323.22C265.63 322.84 238.44 322.84 187.75 323.22L187.75 414.93L269.33 414.93C270.65 564.06 270.21 638.45 268 638.11C114.78 614.35 0 481.73 0 321.89C0 145.28 143.39 1.89 320 1.89C496.61 1.89 640 145.28 640 321.89Z" id="bS1mFenfS"></path>
+    </defs>
+    <g>
+        <g>
+            <g>
+                <use xlink:href="#bS1mFenfS"></use>
+            </g>
+        </g>
+    </g>
+</svg> <span>Share this with your friends</span></button>
+</div>
+            <figure class="post-full-image">
+                <img srcset="https://cdn-media-1.freecodecamp.org/images/1*qZuI2QUxoEvSlLqrqO7UPA.png 300w,
+                            https://cdn-media-1.freecodecamp.org/images/1*qZuI2QUxoEvSlLqrqO7UPA.png 600w,
+                            https://cdn-media-1.freecodecamp.org/images/1*qZuI2QUxoEvSlLqrqO7UPA.png 1000w,
+                            https://cdn-media-1.freecodecamp.org/images/1*qZuI2QUxoEvSlLqrqO7UPA.png 2000w" sizes="(max-width: 800px) 400px,
+                            (max-width: 1170px) 700px,
+                            1400px" src="./How to manage different environments and configurations for iOS projects_files/1_qZuI2QUxoEvSlLqrqO7UPA.png" alt="How to manage different environments and configurations for iOS projects" onerror="this.style.display=&#39;none&#39;">
+            </figure>
+
+            <section class=" post-full-content">
+                <div class="post-content">
+                    <p>As iOS developers, we are already aware of managing different environments like Development, QA, Beta, and Production. For these different environments, there are different server URLs, app icons, and configurations.</p><p>So before creating a new build pointing to an environment, we need to keep in mind that we also have to change the server URL. We could do this by changing some hardcoded flag value in the constant file or using macros, but it makes everything more complicated.</p><p>But if we think for a little while, we can come up with an idea. And by applying this idea, we can easily handle any scenario. So the idea is, if we create different schemas and configurations, then it allows us to change the application server URLs, App icon, Plist file, and configuration.</p><p>In this tutorial, I will show you how to manage different environments using schemas and configuration.</p><p>These are the steps:</p><h4 id="project-setup-"><strong>Project Setup:</strong></h4><p>Open XCode and create a new single view application with a proper name.</p><h4 id="add-schema-and-configurations-"><strong>Add Schema and Configurations:</strong></h4><p>Before adding a schema, we need to know that every XCode schema comes with two different build configurations: <strong>Debug </strong>and <strong>Release. </strong>Then if we want, we can make changes specific to a particular build configuration.</p><p>Now to add our build configurations, select the project in the <strong>Project Navigator </strong>pane on the left. Then select <strong>Info</strong> from the two options (<strong>Info</strong> and <strong>Build Settings)</strong>. In the <strong>Configurations</strong>, we have to add our own configuration for the five environments (Development, Production, QA, Beta, and UAT) there.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_5IHSpl7Pm7qdzjJ0VXpO9w.png" class="kg-image"><figcaption>Add a new configuration for an Environment (Debug and Release)</figcaption></figure><!--kg-card-end: image--><p>First of all, double click on <strong>Debug </strong>and rename it as <strong>Debug (Development). </strong>Similarly, double click on <strong>Release </strong>and rename it as <strong>Release (Development). </strong>Now click +, and select <strong>Duplicate</strong> <strong>Debug (Development) </strong>and <strong>Duplicate Release (Development), </strong>then change the duplicate environment name with the others available names.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_ytKEoM7Fp-pi6eXdVde8XA.png" class="kg-image"><figcaption>After adding all the configurations for different environments</figcaption></figure><!--kg-card-end: image--><p>For the <strong>schema creation</strong>, go to manage schema in top left corner of XCode. There you can see that one schema is already available. Rename it as <strong>Development — </strong>or you can delete the existing and add a new one with the name <strong>Development</strong>. Then add the rest of the four schemas for the other environments.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_JVJ5eY0P-wkS2ViI5rj4-w.png" class="kg-image"><figcaption>Add a new schema for an Environment</figcaption></figure><!--kg-card-end: image--><p>Oops, don’t forget to check the shared box there. After adding all the schemas, the manage schema screen should look like this:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_v_rGZmAYjZe_p4R6usHwTg.png" class="kg-image"><figcaption>All the schemas are added</figcaption></figure><!--kg-card-end: image--><h4 id="add-configuration-settings-file-">Add Configuration Settings File:</h4><p>Right click on Project, select new file, then add Configuration Settings File and give it the same name as the environment.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_EWfTg9WN09lbX8v-KcHDQw.png" class="kg-image"><figcaption>Configuration Settings File</figcaption></figure><!--kg-card-end: image--><p>After adding all the config files, your Project Navigator left pane should look like this:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_53B3UEp-ZMzRvQdj1EEL-w.png" class="kg-image"><figcaption>Configuration Files added</figcaption></figure><!--kg-card-end: image--><p>Now the most important part starts: add your <strong>server URL</strong> and other customized key value in the corresponding configuration file.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_xECXRXHZGrqvL9ijPLgGiQ.png" class="kg-image"><figcaption>Server URL added in Configuration File</figcaption></figure><!--kg-card-end: image--><h4 id="add-plist-files-">Add Plist Files:</h4><p>Rename the info.plist file as development.plist. Copy and paste the same plist file for the different environments inside the project, and rename each of the plist file with the environment’s name. You can set some environment-specific keys and values in the plist files. After that, add the keys from the configuration file to the plist files like this:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_hMBtu6KdmmIgybiF53dSOw.png" class="kg-image"><figcaption>Add keys in Plist File</figcaption></figure><!--kg-card-end: image--><p>Now we have to set the appropriate plist path for each build configuration. From Targets, just select a plist file, and rename it with the same name for the <strong>Debug</strong> and <strong>Release</strong> configuration.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_eFuPiN80FOC4Y3Ea4G2N1Q.png" class="kg-image"><figcaption>Add Plist Path for build configuration</figcaption></figure><!--kg-card-end: image--><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_9H2q_Lgql8R7BKyW1sqDww.png" class="kg-image"><figcaption>Renamed Plist Files</figcaption></figure><!--kg-card-end: image--><h4 id="linking-build-configuration-with-the-configuration-file-">Linking Build Configuration with the Configuration File:</h4><p>Select all the build configurations (Debug and Release) in <strong>Projects Info</strong> one by one. Then set the appropriate configuration file, which you have added to the project.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_W8_auNFU_NRDcsA21Msa0w.png" class="kg-image"><figcaption>Set Configuration File to Build Configuration</figcaption></figure><!--kg-card-end: image--><p>After adding all the configuration files, your Build settings should look like this:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_sNPBwjaXWmYZSAe_3CdFpw.png" class="kg-image"><figcaption>Configuration File and Build Configuration</figcaption></figure><!--kg-card-end: image--><p>So we have now successfully linked all the configuration files to the respective build configurations.</p><h4 id="linking-schema-with-the-build-configuration-">Linking Schema with the Build Configuration:</h4><p>Now the last step is linking the schema with the build configuration. To do this, select any schema, go to edit schema, and set the appropriate build configuration there.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./How to manage different environments and configurations for iOS projects_files/1_o-OY3Yzv7GzmlSs09o2uyA.png" class="kg-image"><figcaption>Linking Schema and Build Configuration</figcaption></figure><!--kg-card-end: image--><h4 id="ready-to-run-the-project-">Ready to Run the Project:</h4><p>Now all the set up is done. The only thing you have to do select the schema and run — the environment will be automatically selected for you. So for fetching the server URL and other values, I have created an Environment.swift file. Check it out:</p><p>To fetch the server URL or other settings in ViewController.Swift or any other file, you have to write only one line of code:</p><p>You can also manage different app icons for different environments from build settings. Then, you will only have to look for a second to see which environment build is installed on your device.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to manage different environments and configurations for iOS projects_files/1_GyDczhyCu8IGrR1jlS0Miw.png" class="kg-image"></figure><!--kg-card-end: image--><p>The complete project is available on <a href="https://github.com/boudhayan/DemoEnvTest" rel="noopener">GitHub</a>. You can download it if you have any questions.</p><p>Don’t spend extra time changing the server URL or some other configuration every time you build your project. This is the easiest way to manage different environments, app icons, and configurations.</p><p>If you like this, please don’t forget to give a clap. It will inspire me more. For any suggestions, please feel free to write an email to <em>mail2boudhayan@gmail.com.</em></p>
+                </div>
+            </section>
+
+
+            
+<div class="social-row">
+    <button class="twitter" onclick="window.open(&#39;https://twitter.com/share?text=How%20to%20manage%20different%20environments%20and%20configurations%20for%20iOS%20projects%20by%20@_boudhayan_&amp;url=https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/&#39;, &#39;share-twitter&#39;, &#39;width=550,height=235&#39;);return false;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path>
+    </svg> <span>&nbsp;Tweet this to your followers</span></button>
+    <div></div>
+    <button class="email" onclick="window.location.href = &#39;mailto:?subject=helpful freeCodeCamp article: How to manage different environments and configurations for iOS projects  &amp;body=How to manage different environments and configurations for iOS projects https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/&#39;;">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="32" height="32">
+    <defs>
+        <path d="M0 100L640 100L320 360L0 100Z" id="b1cw6CIsqS"></path>
+        <path d="M0 537.18L0 160L320 420L640 160L640 541.1L0 537.18Z" id="aAHuzNbff"></path>
+    </defs>
+    <g>
+
+        <use xlink:href="#b1cw6CIsqS" opacity="1" fill-opacity="1"></use>
+        <path d="M0 100L640 100L320 360L0 100Z" id="c2GF8nL4hl" fill="white" fill-opacity="1" filter="url(#shadow605849)"></path>
+        <use xlink:href="#aAHuzNbff" opacity="1" fill-opacity="1"></use>
+        <path d="M0 537.18L0 160L320 420L640 160L640 541.1L0 537.18Z" id="a5mitN1KH" fill="white" fill-opacity="1" filter="url(#shadow15043397)"></path>
+
+    </g>
+</svg> <span>Email this to a friend</span></button>
+
+    <div></div>
+    <button class="facebook" onclick="window.open(&#39;https://www.facebook.com/sharer/sharer.php?u=https://www.freecodecamp.org/news/author/boudhayan/&#39;, &#39;share-facebook&#39;,&#39;width=580,height=296&#39;);return false;">
+        <!-- Facebook Filled icon by Icons8 -->
+
+
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="32" height="32">
+    <defs>
+        <path d="M640 321.89C640 482.61 523.62 615.43 369.16 638.11C368.42 630.47 367.98 556.08 367.83 414.93C395.49 414.61 420.42 414.27 442.61 413.9C446.4 380.3 452.55 347.37 456.62 323.22C425.51 322.93 388.88 323.31 367.83 323.22C368.37 281.18 368.35 303.77 367.83 262.54C372.62 222.64 384.99 209.96 459.86 213.65C459.57 203.36 460.61 151.4 459.86 133.3C460.87 134.09 279.13 86.74 269.33 241.43C268.52 265.86 268.65 290.49 269.33 323.22C265.63 322.84 238.44 322.84 187.75 323.22L187.75 414.93L269.33 414.93C270.65 564.06 270.21 638.45 268 638.11C114.78 614.35 0 481.73 0 321.89C0 145.28 143.39 1.89 320 1.89C496.61 1.89 640 145.28 640 321.89Z" id="bS1mFenfS"></path>
+    </defs>
+    <g>
+        <g>
+            <g>
+                <use xlink:href="#bS1mFenfS"></use>
+            </g>
+        </g>
+    </g>
+</svg> <span>Share this with your friends</span></button>
+</div>
+            <script type="text/javascript">
+                function loadDiscourseComments() {
+                    var xhr = new XMLHttpRequest();
+                    var file = "https://www.freecodecamp.org/forum/srv/status";
+                    var randomNum = Math.round(Math.random() * 10000);
+                    xhr.open('HEAD', file + "?rand=" + randomNum, true);
+                    xhr.send();
+                    xhr.addEventListener("readystatechange", processRequest, false);
+                    function processRequest(e) {
+                        if (xhr.readyState == 4) {
+                            if (xhr.status >= 200 && xhr.status < 304) {
+                                document.getElementById('discourse-comments').innerHTML = '';
+                                DiscourseEmbed = {
+                                    discourseUrl: 'https://www.freecodecamp.org/forum/',
+                                    discourseEmbedUrl: 'https://www.freecodecamp.org/news/managing-different-environments-and-configurations-for-ios-projects-7970327dd9c9/'
+                                };
+                                var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+                                d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+                            } else {
+                                document.getElementById('discourse-comments').innerHTML = '<div style="text-align: center;">Sorry, we could not load the comments. Please try again after sometime.</div>';
+                            }
+                        }
+                    }
+                }
+                if (window && window.addEventListener) {
+                    window.addEventListener('load', function () {
+                        document.getElementById('trigger-load-comments').onclick = loadDiscourseComments;
+                    });
+                }
+            </script>
+
+            <div id="discourse-comments">
+                <button id="trigger-load-comments">Show comments</button>
+            </div>
+
+        </article>
+    </div>
+</main>
+
+
+
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            <article class="read-next-card" style="background-image: url(/news/content/images/size/w600/2019/06/background.png)">
+                <header class="read-next-card-header">
+                    <p class="read-next-card-header-sitetitle">Countinue reading about</p>
+                    <h3 class="read-next-card-header-title"><a href="https://www.freecodecamp.org/news/tag/ios/">iOS</a></h3>
+                </header>
+                <div class="read-next-card-content">
+                    <ul>
+                        <li><a href="https://www.freecodecamp.org/news/ultimate-how-to-bluetooth-swift-with-hardware-in-20-minutes/">The Ultimate How-to: Build a Bluetooth Swift App With Hardware in 20 Minutes</a></li>
+                        <li><a href="https://www.freecodecamp.org/news/developer-checklist-what-should-you-not-miss-from-wwdc-2019/">Developer Checklist: What should you not miss from WWDC 2019?</a></li>
+                        <li><a href="https://www.freecodecamp.org/news/the-story-of-one-mother-two-sons-value-type-vs-reference-type-in-swift-6e125af2d5d0/">The story of one mother &amp; two sons: value type vs reference type in Swift</a></li>
+                    </ul>
+                </div>
+                <footer class="read-next-card-footer">
+                    <a href="https://www.freecodecamp.org/news/tag/ios/">See all 69 posts
+                        →</a>
+                </footer>
+            </article>
+
+            <article class="post-card post tag-tech tag-web-development tag-cloud-computing tag-startup tag-design ">
+
+    <a class="post-card-image-link" href="https://www.freecodecamp.org/news/powering-chat-and-messaging-apps-the-current-landscape-ad0657140b94/">
+        <img class="post-card-image" srcset="https://cdn-media-1.freecodecamp.org/images/1*5pSZtT1kQVHNijWUaikmqA.png 300w,
+                    https://cdn-media-1.freecodecamp.org/images/1*5pSZtT1kQVHNijWUaikmqA.png 600w,
+                    https://cdn-media-1.freecodecamp.org/images/1*5pSZtT1kQVHNijWUaikmqA.png 1000w,
+                    https://cdn-media-1.freecodecamp.org/images/1*5pSZtT1kQVHNijWUaikmqA.png 2000w" sizes="(max-width: 1000px) 400px, 700px" onerror="this.style.display=&#39;none&#39;" src="./How to manage different environments and configurations for iOS projects_files/1_5pSZtT1kQVHNijWUaikmqA.png" alt="How much to build and how much to buy: powering chat and messaging apps">
+    </a>
+
+    <div class="post-card-content">
+
+        <div class="post-card-content-link">
+
+            <header class="post-card-header">
+                <span class="post-card-tags">
+                    <a href="https://www.freecodecamp.org/news/tag/tech/">
+                        #Tech
+                    </a>
+                </span>
+                <h2 class="post-card-title">
+                    <a href="https://www.freecodecamp.org/news/powering-chat-and-messaging-apps-the-current-landscape-ad0657140b94/">
+                        How much to build and how much to buy: powering chat and messaging apps
+                    </a>
+                </h2>
+            </header>
+
+        </div>
+
+
+        <footer class="post-card-meta">
+
+            <time class="meta-item-single">2 years ago</time>
+
+
+        </footer>
+
+    </div>
+
+</article>
+            <article class="post-card post tag-react tag-tech tag-programming tag-web-development tag-javascript ">
+
+    <a class="post-card-image-link" href="https://www.freecodecamp.org/news/do-you-want-to-learn-more-about-react-lets-build-and-then-play-a-game-218e0da5be44/">
+        <img class="post-card-image" srcset="https://cdn-media-1.freecodecamp.org/images/1*jju0KT50kJI1xX6c6EJVsw.png 300w,
+                    https://cdn-media-1.freecodecamp.org/images/1*jju0KT50kJI1xX6c6EJVsw.png 600w,
+                    https://cdn-media-1.freecodecamp.org/images/1*jju0KT50kJI1xX6c6EJVsw.png 1000w,
+                    https://cdn-media-1.freecodecamp.org/images/1*jju0KT50kJI1xX6c6EJVsw.png 2000w" sizes="(max-width: 1000px) 400px, 700px" onerror="this.style.display=&#39;none&#39;" src="./How to manage different environments and configurations for iOS projects_files/1_jju0KT50kJI1xX6c6EJVsw.png" alt="Do you want to learn more about React? Let’s build — and then play — a game.">
+    </a>
+
+    <div class="post-card-content">
+
+        <div class="post-card-content-link">
+
+            <header class="post-card-header">
+                <span class="post-card-tags">
+                    <a href="https://www.freecodecamp.org/news/tag/react/">
+                        #React
+                    </a>
+                </span>
+                <h2 class="post-card-title">
+                    <a href="https://www.freecodecamp.org/news/do-you-want-to-learn-more-about-react-lets-build-and-then-play-a-game-218e0da5be44/">
+                        Do you want to learn more about React? Let’s build — and then play — a game.
+                    </a>
+                </h2>
+            </header>
+
+        </div>
+
+
+        <footer class="post-card-meta">
+
+            <time class="meta-item-single">2 years ago</time>
+
+
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-desc-col">
+                <p>freeCodeCamp is a donor-supported tax-exempt 501(c)(3) nonprofit organization (United States Federal
+                    Tax Identification Number: 82-0779546)
+                </p>
+                <p>
+                    Our mission: to help people learn to code for free. We accomplish this by creating thousands of
+                    videos, articles, and interactive coding lessons - all freely available to the public. We also have
+                    thousands of freeCodeCamp study groups around the world.
+                </p>
+                <p>
+                    Donations to freeCodeCamp go toward our education initiatives, and help pay for servers, services,
+                    and staff. You can&nbsp;<a href="https://freecodecamp.org/donate" class="inline" rel="noopener noreferrer" target="_blank">make a tax-deductible donation here</a>.
+                </p>
+            </div>
+            <div class="footer-col-1">
+                <div class="col-header">Our Nonprofit</div>
+                <a href="https://www.freecodecamp.org/news/about-freecodecamp/">About</a>
+                <a href="https://freecodecamp.org/donate">Donate</a>
+                <a href="https://www.freecodecamp.org/news/shop/" rel="noopener noreferrer" target="_blank">Shop</a>
+                <a href="https://www.linkedin.com/school/free-code-camp/people/" rel="noopener noreferrer" target="_blank">Alumni Network</a>
+                <a href="https://github.com/freeCodeCamp/">Open Source</a>
+                <a href="https://www.freecodecamp.org/news/support/">Support</a>
+                <a href="https://www.freecodecamp.org/news/our-sponsors/">Sponsors</a>
+                <a href="https://www.freecodecamp.org/news/academic-honesty-policy/">Academic Honesty</a>
+                <a href="https://www.freecodecamp.org/news/code-of-conduct/">Code of Conduct</a>
+                <a href="https://www.freecodecamp.org/news/privacy-policy/">Privacy Policy</a>
+                <a href="https://www.freecodecamp.org/news/freecodecamps-terms-of-service/">Terms of Service</a>
+                <a href="https://www.freecodecamp.org/news/copyright-policy/">Copyright Policy</a>
+            </div>
+            <div class="footer-col-2">
+                <div class="col-header">Best Tutorials</div>
+                <a href="https://www.freecodecamp.org/news/best-python-tutorial/">Python Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-git-tutorial/">Git Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/the-best-linux-tutorials/">Linux Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-javascript-tutorial/">JavaScript Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-react-javascript-tutorial/">React Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-html-html5-tutorial/">HTML Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-css-and-css3-tutorial/">CSS Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-sql-database-tutorial/">SQL Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-java-8-tutorial/">Java Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-angular-tutorial-angularjs/">Angular Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-wordpress-tutorial/">WordPress Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-bootstrap-tutorial-responsive-web-design/">Bootstrap
+                    Tutorial</a>
+
+            </div>
+            <div class="footer-col-3">
+                <div class="col-header">Best Examples</div>
+                <a href="https://www.freecodecamp.org/news/python-example/">Python Example </a>
+                <a href="https://www.freecodecamp.org/news/javascript-example/">JavaScript Example</a>
+                <a href="https://www.freecodecamp.org/news/react-examples-reactjs/">React Example</a>
+                <a href="https://www.freecodecamp.org/news/linux-example-bash-command-line/">Linux Example</a>
+                <a href="https://www.freecodecamp.org/news/html-and-html5-example/">HTML Example</a>
+                <a href="https://www.freecodecamp.org/news/css-example-css3/">CSS Example</a>
+                <a href="https://www.freecodecamp.org/news/sql-example/">SQL Example</a>
+                <a href="https://www.freecodecamp.org/news/java-example/">Java Example</a>
+                <a href="https://www.freecodecamp.org/news/the-best-angular-examples/">Angular Example</a>
+                <a href="https://www.freecodecamp.org/news/the-best-jquery-examples/">jQuery Example</a>
+                <a href="https://www.freecodecamp.org/news/the-best-bootstrap-examples/">Bootstrap Example</a>
+                <a href="https://www.freecodecamp.org/news/the-best-php-examples/">PHP Example</a>
+            </div>
+            <div class="footer-col-4">
+                <div class="col-header">Trending Reference</div>
+                <a href="https://www.freecodecamp.org/news/2019-web-developer-roadmap/">2019 Web Developer Roadmap</a>
+                <a href="https://www.freecodecamp.org/news/linux-command-line-bash-tutorial/">Linux Command Line
+                    Guide</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-git-reset-and-git-revert/">Git Reset
+                    and Git Revert</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-git-merge-and-git-rebase/">Git Merge
+                    and Git Rebase</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-javascript-array-methods-map/">JavaScript
+                    Array Map</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-javascript-array-methods-reduce/">JavaScript
+                    Array Reduce</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-javascript-date-and-moment-js/">JavaScript
+                    Date</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-javascript-string-methods-split/">JavaScript
+                    String Split</a>
+                <a href="https://www.freecodecamp.org/news/understanding-flexbox-everything-you-need-to-know-b4013d4dc9af/">CSS
+                    Flexbox Guide</a>
+                <a href="https://www.freecodecamp.org/news/11-things-i-learned-reading-the-css-grid-specification-fb3983aa5e0/">CSS
+                    Grid Guide</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-linux-creating-a-sudo-user/">Create a
+                    Linux Sudo User</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-ssh-setting-up-ssh-keys/">How to Set Up
+                    SSH Keys</a>
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+
+
+    <script>
+        var images = document.querySelectorAll('.kg-gallery-image img');
+        images.forEach(function (image) {
+            var container = image.closest('.kg-gallery-image');
+            var width = image.attributes.width.value;
+            var height = image.attributes.height.value;
+            var ratio = width / height;
+            container.style.flex = ratio + ' 1 0%';
+        })
+    </script>
+
+
+    <script src="./How to manage different environments and configurations for iOS projects_files/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+        </script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/jquery.fitvids.js"></script>
+
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-unescaped-markup.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-markup-templating.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-bash.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-c.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-clojure.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-cpp.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-csharp.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-css.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-docker.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-elixir.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-erlang.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-git.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-go.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-graphql.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-haskell.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-java.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-javascript.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-json.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-jsx.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-kotlin.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-lua.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-markup.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-php.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-python.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-r.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-ruby.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-rust.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-scala.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-sql.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-swift.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-typescript.min.js"></script>
+    <script type="text/javascript" src="./How to manage different environments and configurations for iOS projects_files/prism-yaml.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        // Start fitVids
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // End fitVids
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".toggle-button-nav").click(function () {
+            $(".nav").toggleClass("show-main-nav-items");
+            $(".site-nav").toggleClass("expand-nav");
+            $(".toggle-button-nav").toggleClass("reverse-toggle-color");
+            $(".site-nav-left").toggleClass("display-search");
+        });
+    });
+</script>
+
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D6RKKP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+</body></html>
